@@ -29,39 +29,65 @@ import simple_draw as sd
 
 # TODO здесь ваш код
 
-def triangle(point, angle, lenght):
-    for _ in range(3):
-        v = sd.get_vector(start_point=point, angle=angle, length=lenght)
-        v.draw()
-        angle += 120
-        point = v.end_point
+# def triangle(point, angle, lenght):
+#     for _ in range(3):
+#         v = sd.get_vector(start_point=point, angle=angle, length=lenght)
+#         v.draw()
+#         angle += 120
+#         point = v.end_point
         
-def square(point, angle, lenght):
-    for _ in range(4):
-        v = sd.get_vector(start_point=point, angle=angle, length=lenght)
-        v.draw()
-        angle += 90
-        point = v.end_point
+# def square(point, angle, lenght):
+#     for _ in range(4):
+#         v = sd.get_vector(start_point=point, angle=angle, length=lenght)
+#         v.draw()
+#         angle += 90
+#         point = v.end_point
 
-def pentagon(point, angle, lenght):
-    for _ in range(5):
-        v = sd.get_vector(start_point=point, angle=angle, length=lenght)
-        v.draw()
-        angle += 72
-        point = v.end_point
+# def pentagon(point, angle, lenght):
+#     for _ in range(5):
+#         v = sd.get_vector(start_point=point, angle=angle, length=lenght)
+#         v.draw()
+#         angle += 72
+#         point = v.end_point
 
-def hexagon(point, angle, lenght):
-    for _ in range(6):
-        v = sd.get_vector(start_point=point, angle=angle, length=lenght)
-        v.draw()
-        angle += 60
-        point = v.end_point
+# def hexagon(point, angle, lenght):
+#     for _ in range(6):
+#         v = sd.get_vector(start_point=point, angle=angle, length=lenght)
+#         v.draw()
+#         angle += 60
+#         point = v.end_point
     
-triangle(sd.get_point(100, 100), 20, 100)
-square(sd.get_point(400,100), 20, 100)
-pentagon(sd.get_point(100,400), 20, 100)
-hexagon(sd.get_point(400,370), 20, 100)
+# triangle(sd.get_point(100, 100), 20, 100)
+# square(sd.get_point(400,100), 20, 100)
+# pentagon(sd.get_point(100,400), 20, 100)
+# hexagon(sd.get_point(400,370), 20, 100)
 
+def draw_shape(point, angle, length, sides):
+    angle_ratation = 360 / sides
+    for _ in range(sides):
+        v = sd.get_vector(start_point=point, angle=angle, length=length)
+        v.draw()
+        angle += angle_ratation
+        point = v.end_point
+
+
+
+def triangle(point, angle, length):
+    draw_shape(point, angle, length, sides=3)
+
+def square(point, angle, length):
+    draw_shape(point, angle, length, sides=4)
+
+def pentagon(point, angle, length):
+    draw_shape(point, angle, length, sides=5)
+    
+def hexagon(point, angle, length):
+    draw_shape(point, angle, length, sides=6)
+
+triangle(point=sd.get_point(100, 100), angle=20, length=100)
+square(point=sd.get_point(400,100), angle=20, length=100)
+pentagon(point=sd.get_point(100,400), angle=20, length=100)
+hexagon(point=sd.get_point(400,370), angle = 20, length=100)
 
 # Часть 1-бис.
 # Попробуйте прикинуть обьем работы, если нужно будет внести изменения в этот код.
