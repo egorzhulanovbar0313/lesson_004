@@ -28,6 +28,31 @@ import simple_draw as sd
 
 # TODO здесь ваш код
 
+# def branches(start_point, angle, length, delta):
+#     if length < 10:
+#         return
+#     vector = sd.get_vector(start_point=start_point, angle=angle, length=length)
+#     vector.draw()
+#     next_point = vector.end_point
+#     next_length = length * 0.75
+#     branches(start_point=next_point, angle=angle - delta, length=next_length, delta=delta)
+#     branches(start_point=next_point, angle=angle + delta, length=next_length, delta=delta)
+
+# branches(start_point=sd.get_point(300, 30), angle=90, length=100, delta = 30)
+
+def branches(start_point, angle, length, delta):
+    if length < 8:
+        return
+    vector = sd.get_vector(start_point=start_point, angle=angle, length=length)
+    vector.draw()
+    next_point = vector.end_point
+    next_length = length * (sd.random_number(60, 90) / 100)
+    next_delta = delta * (sd.random_number(60, 140) / 100)
+    branches(start_point=next_point, angle=angle - next_delta, length=next_length, delta=delta)
+    branches(start_point=next_point, angle=angle + next_delta, length=next_length, delta=delta)
+
+branches(start_point=sd.get_point(300, 30), angle=90, length=100, delta = 30)
+
 # 4) Усложненное задание (делать по желанию)
 # - сделать рандомное отклонение угла ветвей в пределах 40% от 30-ти градусов
 # - сделать рандомное отклонение длины ветвей в пределах 20% от коэффициента 0.75
