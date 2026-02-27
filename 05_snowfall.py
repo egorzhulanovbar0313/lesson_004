@@ -18,11 +18,31 @@ N = 20
 # sd.user_want_exit()
 
 # TODO здесь ваш код
+
+x_list = []
+while len(x_list) < N:
+    x_list.append(sd.random_number(0, 600))
+y_list = []
+while len(y_list) < N:
+    y_list.append(sd.random_number(0, 600))
+length_list = []
+while len(length_list) < N:
+    length_list.append(sd.random_number(10, 20))
+
+def snow_fall(x, y, lenghth, color):
+    point = sd.get_point(x, y)
+    sd.snowflake(center=point, length=lenghth, color=color)
+
 while True:
-    sd.clear_screen()
-    pass
-    pass
-    pass
+    sd.start_drawing()
+    for i in range(N):
+        snow_fall(x_list[i], y_list[i], length_list[i], sd.background_color)
+        y_list[i] -= 10
+        x_list[i] += sd.random_number(-5, 5)
+        snow_fall(x_list[i], y_list[i], length_list[i], sd.COLOR_WHITE)
+        if y_list[i] < 20:
+            y_list[i] = 600
+    sd.finish_drawing()
     sd.sleep(0.1)
     if sd.user_want_exit():
         break
